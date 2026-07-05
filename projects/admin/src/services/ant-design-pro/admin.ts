@@ -131,10 +131,15 @@ export async function fetchAdminBrands(params?: { page?: number; pageSize?: numb
 }
 
 // 创建品牌
-export async function createBrand(payload: { brandName: string; logo?: string; description?: string }) {
+export async function createBrand(payload: {
+  brandName: string
+  brandDesc?: string
+  sortNo?: number
+  status?: string
+}) {
   const response = await request<ApiResponse<any>>('/api/admin/products/brands', {
     method: 'POST',
-    data: payload,
+    data: { ...payload, status: payload.status ?? 'ENABLED' },
   })
   return response.data
 }
