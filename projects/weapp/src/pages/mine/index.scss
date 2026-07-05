@@ -1,0 +1,117 @@
+.mine-page {
+  min-height: 100vh;
+  background: var(--bg-page);
+  padding: 24rpx;
+
+  .guest-card {
+    text-align: center;
+    padding: 64rpx 32rpx;
+
+    .title {
+      display: block;
+      font-size: 36rpx;
+      font-weight: 600;
+      margin-bottom: 16rpx;
+    }
+
+    .subtitle {
+      display: block;
+      font-size: 26rpx;
+      color: var(--text-secondary);
+      margin-bottom: 32rpx;
+    }
+
+    .login-btn {
+      width: 60%;
+    }
+  }
+
+  .profile-card {
+    display: flex;
+    align-items: center;
+    gap: 24rpx;
+
+    .avatar {
+      width: 120rpx;
+      height: 120rpx;
+      border-radius: 60rpx;
+      background: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .avatar-text {
+        color: #fff;
+        font-size: 48rpx;
+        font-weight: 600;
+      }
+    }
+
+    .info {
+      flex: 1;
+
+      .name {
+        display: block;
+        font-size: 36rpx;
+        font-weight: 600;
+        margin-bottom: 8rpx;
+      }
+
+      .tag {
+        display: inline-block;
+        font-size: 22rpx;
+        color: var(--primary);
+        background: #eff6ff;
+        padding: 4rpx 16rpx;
+        border-radius: 8rpx;
+      }
+    }
+  }
+
+  .menu-card {
+    padding: 0 24rpx;
+
+    .menu-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 28rpx 0;
+      border-bottom: 1rpx solid var(--border);
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      .text {
+        font-size: 30rpx;
+      }
+
+      .arrow {
+        color: var(--text-muted);
+        font-size: 32rpx;
+      }
+
+      .badge-wrap {
+        display: flex;
+        align-items: center;
+        gap: 12rpx;
+
+        .badge {
+          background: var(--danger);
+          color: #fff;
+          font-size: 20rpx;
+          min-width: 32rpx;
+          height: 32rpx;
+          line-height: 32rpx;
+          text-align: center;
+          border-radius: 16rpx;
+          padding: 0 8rpx;
+        }
+      }
+    }
+  }
+
+  .logout-btn {
+    margin-top: 48rpx;
+  }
+}

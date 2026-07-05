@@ -1,0 +1,208 @@
+.product-detail-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: var(--bg-page);
+
+  &.loading {
+    align-items: center;
+    justify-content: center;
+  }
+
+  .content {
+    flex: 1;
+
+    .main-image {
+      width: 100%;
+      height: 560rpx;
+      background: #fff;
+    }
+
+    .info-card {
+      .price-row {
+        display: flex;
+        align-items: baseline;
+        gap: 16rpx;
+        margin-bottom: 16rpx;
+
+        .price {
+          font-size: 44rpx;
+          font-weight: 700;
+          color: var(--danger);
+        }
+
+        .original-price {
+          font-size: 26rpx;
+          color: var(--text-muted);
+          text-decoration: line-through;
+        }
+      }
+
+      .name {
+        display: block;
+        font-size: 34rpx;
+        font-weight: 600;
+        line-height: 1.4;
+        margin-bottom: 12rpx;
+      }
+
+      .summary {
+        display: block;
+        font-size: 26rpx;
+        color: var(--text-secondary);
+        margin-bottom: 16rpx;
+      }
+
+      .meta-row {
+        display: flex;
+        gap: 24rpx;
+
+        .meta {
+          font-size: 24rpx;
+          color: var(--text-muted);
+        }
+      }
+    }
+
+    .spec-card,
+    .level-card,
+    .shop-card,
+    .detail-card {
+      .section-title {
+        display: block;
+        font-size: 30rpx;
+        font-weight: 600;
+        margin-bottom: 16rpx;
+      }
+    }
+
+    .spec-text {
+      font-size: 26rpx;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .level-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 12rpx 0;
+      border-bottom: 1rpx solid var(--border);
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      .level-name {
+        font-size: 26rpx;
+        color: var(--text-secondary);
+      }
+
+      .level-price {
+        font-size: 28rpx;
+        font-weight: 500;
+        color: var(--danger);
+      }
+    }
+
+    .shop-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .shop-name {
+        font-size: 28rpx;
+        font-weight: 500;
+      }
+
+      .enter-shop {
+        font-size: 26rpx;
+        color: var(--primary);
+      }
+    }
+
+    .detail-text {
+      font-size: 26rpx;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .safe-bottom {
+      height: 140rpx;
+    }
+  }
+
+  .bottom-bar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 112rpx;
+    background: #fff;
+    border-top: 1rpx solid var(--border);
+    display: flex;
+    align-items: center;
+    padding: 0 24rpx;
+    padding-bottom: env(safe-area-inset-bottom);
+
+    .quantity-control {
+      display: flex;
+      align-items: center;
+      gap: 16rpx;
+      margin-right: 16rpx;
+
+      .label {
+        font-size: 26rpx;
+        color: var(--text-secondary);
+      }
+
+      .stepper {
+        display: flex;
+        align-items: center;
+        border: 1rpx solid var(--border);
+        border-radius: 8rpx;
+
+        .btn {
+          width: 52rpx;
+          height: 52rpx;
+          line-height: 52rpx;
+          text-align: center;
+          font-size: 32rpx;
+          color: var(--text-main);
+
+          &.disabled {
+            color: var(--text-muted);
+          }
+        }
+
+        .value {
+          width: 64rpx;
+          height: 52rpx;
+          line-height: 52rpx;
+          text-align: center;
+          font-size: 28rpx;
+          border-left: 1rpx solid var(--border);
+          border-right: 1rpx solid var(--border);
+        }
+      }
+    }
+
+    .action-btn {
+      flex: 1;
+      height: 76rpx;
+      line-height: 76rpx;
+      text-align: center;
+      border-radius: 38rpx;
+      font-size: 28rpx;
+      color: #fff;
+      margin-left: 12rpx;
+
+      &.cart-btn {
+        background: #f59e0b;
+      }
+
+      &.buy-btn {
+        background: var(--danger);
+      }
+    }
+  }
+}

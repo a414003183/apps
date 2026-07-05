@@ -1,0 +1,125 @@
+.order-list-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: var(--bg-page);
+
+  &.empty {
+    align-items: center;
+    justify-content: center;
+
+    .login-btn {
+      margin-top: 32rpx;
+      width: 240rpx;
+    }
+  }
+
+  .tab-bar {
+    background: #fff;
+    padding: 0 24rpx;
+    white-space: nowrap;
+    border-bottom: 1rpx solid var(--border);
+
+    .tab-item {
+      display: inline-block;
+      padding: 24rpx 32rpx;
+      font-size: 28rpx;
+      color: var(--text-secondary);
+      position: relative;
+
+      &.active {
+        color: var(--primary);
+        font-weight: 500;
+
+        &::after {
+          content: '';
+          position: absolute;
+          left: 50%;
+          bottom: 0;
+          transform: translateX(-50%);
+          width: 40rpx;
+          height: 4rpx;
+          background: var(--primary);
+          border-radius: 2rpx;
+        }
+      }
+    }
+  }
+
+  .order-list {
+    flex: 1;
+    padding: 16rpx 24rpx;
+
+    .empty-state {
+      padding: 160rpx 0;
+      text-align: center;
+    }
+
+    .order-card {
+      background: #fff;
+      border-radius: 12rpx;
+      padding: 24rpx;
+      margin-bottom: 16rpx;
+
+      .order-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 16rpx;
+
+        .order-no {
+          font-size: 26rpx;
+          color: var(--text-main);
+          font-weight: 500;
+        }
+
+        .order-status {
+          font-size: 24rpx;
+          color: var(--primary);
+        }
+      }
+
+      .order-body {
+        padding-bottom: 16rpx;
+        border-bottom: 1rpx solid var(--border);
+        margin-bottom: 16rpx;
+
+        .shop-name {
+          display: block;
+          font-size: 28rpx;
+          color: var(--text-main);
+          margin-bottom: 8rpx;
+        }
+
+        .order-meta {
+          font-size: 24rpx;
+          color: var(--text-secondary);
+        }
+      }
+
+      .order-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .create-time {
+          font-size: 22rpx;
+          color: var(--text-muted);
+        }
+
+        .detail-link {
+          font-size: 24rpx;
+          color: var(--primary);
+        }
+      }
+    }
+
+    .load-more {
+      display: block;
+      text-align: center;
+      padding: 24rpx 0;
+      font-size: 24rpx;
+      color: var(--text-muted);
+    }
+  }
+}

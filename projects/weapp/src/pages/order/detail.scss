@@ -1,0 +1,224 @@
+.order-detail-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: var(--bg-page);
+
+  &.empty {
+    align-items: center;
+    justify-content: center;
+  }
+
+  .content {
+    flex: 1;
+
+    .section-title {
+      display: block;
+      font-size: 30rpx;
+      font-weight: 600;
+      margin-bottom: 16rpx;
+    }
+
+    .status-card {
+      background: var(--primary);
+      color: #fff;
+
+      .status-text {
+        display: block;
+        font-size: 40rpx;
+        font-weight: 600;
+        margin-bottom: 8rpx;
+      }
+
+      .pay-status {
+        font-size: 26rpx;
+        opacity: 0.9;
+      }
+    }
+
+    .address-card {
+      .address-name {
+        display: block;
+        font-size: 28rpx;
+        font-weight: 500;
+        margin-bottom: 8rpx;
+      }
+
+      .address-detail {
+        font-size: 26rpx;
+        color: var(--text-secondary);
+        line-height: 1.5;
+      }
+    }
+
+    .items-card {
+      .item-row {
+        display: flex;
+        padding: 16rpx 0;
+        border-bottom: 1rpx solid var(--border);
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        .item-image {
+          width: 140rpx;
+          height: 140rpx;
+          border-radius: 8rpx;
+          background: var(--bg-page);
+          margin-right: 16rpx;
+
+          &.placeholder {
+            background: #e5e7eb;
+          }
+        }
+
+        .item-info {
+          flex: 1;
+
+          .item-name {
+            font-size: 26rpx;
+            color: var(--text-main);
+            line-height: 1.4;
+          }
+
+          .item-sku {
+            font-size: 22rpx;
+            color: var(--text-muted);
+            margin-top: 8rpx;
+          }
+
+          .item-bottom {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 16rpx;
+
+            .item-price {
+              font-size: 28rpx;
+              font-weight: 600;
+              color: var(--danger);
+            }
+
+            .item-quantity {
+              font-size: 24rpx;
+              color: var(--text-muted);
+            }
+          }
+        }
+      }
+    }
+
+    .amount-card {
+      .amount-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 12rpx 0;
+
+        &.total {
+          border-top: 1rpx solid var(--border);
+          margin-top: 12rpx;
+          padding-top: 20rpx;
+
+          .value {
+            color: var(--danger);
+            font-weight: 600;
+          }
+        }
+
+        .label {
+          font-size: 26rpx;
+          color: var(--text-secondary);
+        }
+
+        .value {
+          font-size: 26rpx;
+          color: var(--text-main);
+        }
+      }
+    }
+
+    .timeline-card {
+      .timeline-item {
+        display: flex;
+        padding-bottom: 24rpx;
+        position: relative;
+
+        &:last-child {
+          padding-bottom: 0;
+        }
+
+        &:not(:last-child)::before {
+          content: '';
+          position: absolute;
+          left: 10rpx;
+          top: 28rpx;
+          bottom: 0;
+          width: 2rpx;
+          background: var(--border);
+        }
+
+        .dot {
+          width: 22rpx;
+          height: 22rpx;
+          border-radius: 11rpx;
+          background: var(--primary);
+          margin-right: 20rpx;
+          margin-top: 6rpx;
+          flex-shrink: 0;
+        }
+
+        .timeline-info {
+          flex: 1;
+
+          .timeline-title {
+            display: block;
+            font-size: 28rpx;
+            font-weight: 500;
+            margin-bottom: 4rpx;
+          }
+
+          .timeline-content {
+            display: block;
+            font-size: 24rpx;
+            color: var(--text-secondary);
+            margin-bottom: 4rpx;
+          }
+
+          .timeline-time {
+            font-size: 22rpx;
+            color: var(--text-muted);
+          }
+        }
+      }
+    }
+
+    .safe-bottom {
+      height: 120rpx;
+    }
+  }
+
+  .bottom-bar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 112rpx;
+    background: #fff;
+    border-top: 1rpx solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 24rpx;
+    padding-bottom: env(safe-area-inset-bottom);
+
+    .confirm-btn {
+      background: var(--primary);
+      color: #fff;
+      border-radius: 36rpx;
+      height: 72rpx;
+      line-height: 72rpx;
+      font-size: 28rpx;
+      padding: 0 40rpx;
+    }
+  }
+}

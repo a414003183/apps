@@ -1,0 +1,137 @@
+@import "tailwindcss";
+@import "@heroui/styles";
+@import "@apps/config/theme.css";
+
+:root {
+  --color-gray-100: oklch(96.7% 0.003 264.542);
+  --color-gray-400: oklch(70.7% 0.022 261.325);
+  --color-gray-700: oklch(37.3% 0.034 259.733);
+  --color-black: #000;
+  --color-white: #fff;
+  --spacing: 0.25rem;
+  --container-xs: 20rem;
+  --container-sm: 24rem;
+  --container-md: 28rem;
+  --container-lg: 32rem;
+  --text-xs: 0.75rem;
+  --text-xs--line-height: calc(1 / 0.75);
+  --text-sm: 0.875rem;
+  --text-sm--line-height: calc(1.25 / 0.875);
+  --text-base: 1rem;
+  --text-base--line-height: calc(1.5 / 1);
+  --text-lg: 1.125rem;
+  --text-lg--line-height: calc(1.75 / 1.125);
+  --text-xl: 1.25rem;
+  --text-xl--line-height: calc(1.75 / 1.25);
+  --text-2xl: 1.5rem;
+  --text-2xl--line-height: calc(2 / 1.5);
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  --tracking-tight: -0.025em;
+  --tracking-wider: 0.05em;
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-relaxed: 1.625;
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-smooth: ease;
+  --ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
+  --ease-out-fluid: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-linear: linear;
+  --animate-pulse: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --blur-md: 12px;
+  --default-transition-duration: 150ms;
+  --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  color-scheme: light;
+  --border-width: 1px;
+  --field-border-width: 0px;
+  --disabled-opacity: 0.5;
+  --ring-offset-width: 2px;
+  --cursor-interactive: pointer;
+  --cursor-disabled: not-allowed;
+  --skeleton-animation: shimmer;
+  --page-backdrop:
+    radial-gradient(circle at top left, color-mix(in oklab, var(--accent) 12%, transparent) 0%, transparent 34%),
+    radial-gradient(circle at top right, color-mix(in oklab, var(--accent) 10%, transparent) 0%, transparent 26%),
+    linear-gradient(180deg, color-mix(in oklab, var(--background) 84%, var(--white) 16%) 0%, var(--background) 100%);
+  --hero-gradient: linear-gradient(
+    135deg,
+    color-mix(in oklab, var(--accent) 14%, var(--white) 86%) 0%,
+    color-mix(in oklab, var(--accent) 6%, var(--surface-secondary) 94%) 52%,
+    var(--surface) 100%
+  );
+}
+
+html,
+body,
+#root {
+  min-height: 100vh;
+}
+
+body {
+  tab-size: 4;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-body);
+  font-feature-settings: var(--default-font-feature-settings, normal);
+  font-variation-settings: var(--default-font-variation-settings, normal);
+  color: var(--foreground);
+  background: var(--page-backdrop);
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+* {
+  box-sizing: border-box;
+  border-color: var(--border, currentColor);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--accent) 24%, transparent);
+  color: var(--foreground);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

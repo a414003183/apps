@@ -1,0 +1,68 @@
+{
+  "name": "@projects/weapp",
+  "version": "1.0.0",
+  "private": true,
+  "description": "电信供应链管理系统 - 微信小程序端",
+  "templateInfo": {
+    "name": "default",
+    "typescript": true,
+    "css": "scss"
+  },
+  "scripts": {
+    "dev:weapp": "taro build --type weapp --watch",
+    "build:weapp": "taro build --type weapp",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx src",
+    "lint:fix": "eslint --ext .js,.jsx,.ts,.tsx src --fix",
+    "type-check": "tsc --noEmit"
+  },
+  "browserslist": [
+    "last 3 versions",
+    "Android >= 4.1",
+    "ios >= 8"
+  ],
+  "author": "",
+  "dependencies": {
+    "@apps/config": "workspace:^1.0.0",
+    "@apps/types": "workspace:^1.0.0",
+    "@babel/runtime": "^7.25.0",
+    "@tarojs/components": "4.0.12",
+    "@tarojs/helper": "4.0.12",
+    "@tarojs/plugin-framework-react": "4.0.12",
+    "@tarojs/plugin-platform-weapp": "4.0.12",
+    "@tarojs/react": "4.0.12",
+    "@tarojs/runtime": "4.0.12",
+    "@tarojs/shared": "4.0.12",
+    "@tarojs/taro": "4.0.12",
+    "classnames": "^2.3.2",
+    "dayjs": "^1.11.13",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "zustand": "5.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.25.0",
+    "@babel/plugin-proposal-class-properties": "^7.18.6",
+    "@babel/preset-react": "^7.25.0",
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.15",
+    "@tarojs/cli": "4.0.12",
+    "@tarojs/webpack5-runner": "4.0.12",
+    "@types/node": "^20.2.3",
+    "@types/react": "^18.3.12",
+    "@types/webpack-env": "^1.18.5",
+    "babel-preset-taro": "4.0.12",
+    "css-loader": "7.1.2",
+    "eslint": "^8.3.0",
+    "eslint-config-taro": "4.0.12",
+    "eslint-plugin-react": "^7.33.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "postcss": "^8.4.38",
+    "react-refresh": "^0.14.2",
+    "sass": "^1.77.6",
+    "sass-loader": "^14.2.1",
+    "style-loader": "^4.0.0",
+    "stylelint": "^15.3.0",
+    "tsconfig": "workspace:^1.0.0",
+    "typescript": "^5.3.3",
+    "webpack": "5.91.0"
+  }
+}

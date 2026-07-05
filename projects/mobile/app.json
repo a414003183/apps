@@ -1,0 +1,39 @@
+{
+  "expo": {
+    "name": "客户采购商城",
+    "slug": "android-mall-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "scheme": "telecommall",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": false,
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#4f6ef7"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.telecom.customer.mall"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#4f6ef7"
+      },
+      "package": "com.telecom.customer.mall",
+      "usesCleartextTraffic": true
+    },
+    "extra": {
+      "apiBaseUrl": "http://192.168.0.27:8080/api"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": ["expo-router", "expo-secure-store"],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}

@@ -1,0 +1,77 @@
+.register-page {
+  min-height: 100vh;
+  background: var(--bg-page);
+  padding: 48rpx 32rpx;
+
+  .header {
+    margin-bottom: 48rpx;
+
+    .title {
+      display: block;
+      font-size: 48rpx;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 16rpx;
+    }
+
+    .subtitle {
+      display: block;
+      font-size: 28rpx;
+      color: var(--text-secondary);
+    }
+  }
+
+  .form-card {
+    .error-text {
+      display: block;
+      background: #fef2f2;
+      color: var(--danger);
+      font-size: 26rpx;
+      padding: 16rpx 20rpx;
+      border-radius: 8rpx;
+      margin-bottom: 24rpx;
+    }
+
+    .form-item {
+      margin-bottom: 24rpx;
+
+      .label {
+        display: block;
+        font-size: 26rpx;
+        color: var(--text-secondary);
+        margin-bottom: 12rpx;
+
+        .required {
+          color: var(--danger);
+          margin-right: 4rpx;
+        }
+      }
+
+      .input {
+        width: 100%;
+        height: 84rpx;
+        background: var(--bg-page);
+        border-radius: 12rpx;
+        padding: 0 24rpx;
+        font-size: 28rpx;
+        color: var(--text-main);
+      }
+    }
+
+    .submit-btn {
+      margin-top: 16rpx;
+    }
+
+    .login-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 32rpx;
+      gap: 8rpx;
+
+      .link {
+        font-weight: 500;
+      }
+    }
+  }
+}

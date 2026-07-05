@@ -1,0 +1,25 @@
+{
+  "name": "@apps/api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "公共 API 客户端（axios 通用版）",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "axios": "^1.3.5"
+  },
+  "peerDependencies": {
+    "@apps/types": "workspace:^1.0.0",
+    "@apps/utils": "workspace:^1.0.0"
+  },
+  "devDependencies": {
+    "@apps/types": "workspace:^1.0.0",
+    "@apps/utils": "workspace:^1.0.0",
+    "tsconfig": "workspace:^1.0.0",
+    "typescript": "^5.3.3"
+  }
+}

@@ -1,0 +1,9 @@
+node_modules
+dist
+build
+.umi
+.umi-production
+.next
+coverage
+pnpm-lock.yaml
+*.lock

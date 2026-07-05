@@ -1,0 +1,16 @@
+{
+  "name": "@apps/types",
+  "version": "1.0.0",
+  "private": true,
+  "description": "公共业务类型定义",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "devDependencies": {
+    "tsconfig": "workspace:^1.0.0",
+    "typescript": "^5.3.3"
+  }
+}

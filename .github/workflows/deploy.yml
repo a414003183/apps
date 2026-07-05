@@ -1,0 +1,79 @@
+name: Deploy Web to Server
+
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+
+env:
+  NODE_VERSION: '20'
+  PNPM_VERSION: '10.4.1'
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        # 如果仓库中没有 pnpm-lock.yaml，先尝试 frozen-lockfile，失败则普通 install
+        run: |
+          if [ -f pnpm-lock.yaml ]; then
+            pnpm install --frozen-lockfile
+          else
+            pnpm install
+          fi
+
+      - name: Build admin
+        run: pnpm build:admin
+
+      - name: Build mall
+        run: pnpm build:mall
+
+      - name: Package web artifacts
+        run: |
+          VERSION="web-${{ github.run_id }}-${{ github.sha }}"
+          mkdir -p "deploy-pkg"
+          cp -r projects/admin/dist "deploy-pkg/admin"
+          cp -r projects/mall/dist "deploy-pkg/mall"
+          cp deploy/deploy-web.sh "deploy-pkg/"
+          tar -czf "${VERSION}.tar.gz" -C deploy-pkg .
+          echo "VERSION=${VERSION}" >> $GITHUB_ENV
+
+      - name: Upload web package to server
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          source: "${{ env.VERSION }}.tar.gz"
+          target: '/opt/app/releases/'
+          strip_components: 0
+
+      - name: Deploy on server
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            set -e
+            VERSION="${{ env.VERSION }}"
+            TAR_FILE="/opt/app/releases/${VERSION}.tar.gz"
+            TMP_DIR="/tmp/${VERSION}"
+            mkdir -p "$TMP_DIR"
+            tar -xzf "$TAR_FILE" -C "$TMP_DIR"
+            bash "$TMP_DIR/deploy-web.sh" "$TAR_FILE"
+            rm -rf "$TMP_DIR"

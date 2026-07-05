@@ -1,0 +1,89 @@
+.shop-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: var(--bg-page);
+
+  .shop-header {
+    background: #fff;
+    padding: 32rpx 24rpx;
+
+    .shop-name {
+      display: block;
+      font-size: 36rpx;
+      font-weight: 600;
+      margin-bottom: 12rpx;
+    }
+
+    .shop-meta {
+      display: flex;
+      gap: 24rpx;
+      margin-bottom: 12rpx;
+
+      .meta-item {
+        font-size: 24rpx;
+        color: var(--text-secondary);
+      }
+    }
+
+    .shop-desc {
+      font-size: 24rpx;
+      color: var(--text-muted);
+    }
+  }
+
+  .product-list {
+    flex: 1;
+    padding: 16rpx 24rpx;
+
+    .product-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16rpx;
+
+      .product-card {
+        width: calc(50% - 8rpx);
+        background: #fff;
+        border-radius: 12rpx;
+        overflow: hidden;
+
+        .product-image {
+          width: 100%;
+          height: 240rpx;
+          background: var(--bg-page);
+        }
+
+        .product-info {
+          padding: 16rpx;
+
+          .product-name {
+            font-size: 26rpx;
+            color: var(--text-main);
+            line-height: 1.4;
+            min-height: 72rpx;
+          }
+
+          .product-price {
+            font-size: 30rpx;
+            font-weight: 600;
+            color: var(--danger);
+            margin-top: 12rpx;
+          }
+        }
+      }
+    }
+
+    .load-more {
+      display: block;
+      text-align: center;
+      padding: 24rpx 0;
+      font-size: 24rpx;
+      color: var(--text-muted);
+    }
+
+    .empty-state {
+      padding: 120rpx 0;
+      text-align: center;
+    }
+  }
+}
