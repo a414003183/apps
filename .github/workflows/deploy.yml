@@ -30,17 +30,21 @@ jobs:
           cache: ''
 
       - name: Install dependencies
-        # 如果仓库中没有 pnpm-lock.yaml，先尝试 frozen-lockfile，失败则普通 install
+        # 使用 --ignore-scripts 跳过 postinstall，避免 admin 的 max setup 在公共包编译前执行
         run: |
           if [ -f pnpm-lock.yaml ]; then
-            pnpm install --frozen-lockfile
+            pnpm install --frozen-lockfile --ignore-scripts
           else
-            pnpm install
+            pnpm install --ignore-scripts
           fi
 
       - name: Build workspace dependencies
         # GitHub 上是全新安装，公共包的 dist 目录不存在，需要先编译
         run: pnpm --filter './public/*' build
+
+      - name: Setup admin (postinstall)
+        # 手动补跑 admin 的 max setup
+        run: pnpm --filter @projects/admin exec max setup
 
       - name: Build admin
         run: pnpm build:admin
