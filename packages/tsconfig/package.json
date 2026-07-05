@@ -1,0 +1,12 @@
+{
+  "name": "tsconfig",
+  "version": "1.0.0",
+  "private": true,
+  "description": "共享 TypeScript 配置",
+  "main": "index.js",
+  "files": [
+    "base.json",
+    "create-react-app.json",
+    "react-native.json"
+  ]
+}
