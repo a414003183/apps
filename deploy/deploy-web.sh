@@ -37,7 +37,7 @@ echo "========================================"
 
 # 1. 解压新版本
 mkdir -p "$EXTRACT_DIR"
-tar -xzf "$TAR_FILE" -C "$EXTRACT_DIR" --strip-components=1
+tar -xzf "$TAR_FILE" -C "$EXTRACT_DIR"
 
 # 2. 检查目录结构
 if [ ! -d "$EXTRACT_DIR/admin" ] || [ ! -d "$EXTRACT_DIR/mall" ]; then

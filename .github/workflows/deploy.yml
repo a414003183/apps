@@ -59,7 +59,8 @@ jobs:
           cp -r projects/admin/dist "deploy-pkg/admin"
           cp -r projects/mall/dist "deploy-pkg/mall"
           cp deploy/deploy-web.sh "deploy-pkg/"
-          tar -czf "${VERSION}.tar.gz" -C deploy-pkg .
+          # 直接打包 deploy-pkg 内的文件，不带 ./ 前缀
+          cd deploy-pkg && tar -czf "../${VERSION}.tar.gz" . && cd ..
           echo "VERSION=${VERSION}" >> $GITHUB_ENV
 
       - name: Upload web package to server
