@@ -57,8 +57,10 @@ mkdir -p "$WEB_DIR"
 rm -rf "$CURRENT_DIR"
 ln -sfn "$EXTRACT_DIR" "$CURRENT_DIR"
 
-# 5. 设置权限
-chown -R www-data:www-data "$CURRENT_DIR" 2>/dev/null || chown -R app:app "$CURRENT_DIR"
+# 5. 设置权限（使用 /opt/app 的属主，避免 SSH 用户和运行用户不一致）
+APP_OWNER=$(stat -c '%U' "$APP_DIR" 2>/dev/null || echo "root")
+APP_GROUP=$(stat -c '%G' "$APP_DIR" 2>/dev/null || echo "root")
+chown -R "$APP_OWNER:$APP_GROUP" "$CURRENT_DIR"
 
 # 6. 重新加载 Nginx
 if systemctl is-active --quiet nginx; then
