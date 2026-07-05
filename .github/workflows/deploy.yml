@@ -38,6 +38,10 @@ jobs:
             pnpm install
           fi
 
+      - name: Build workspace dependencies
+        # GitHub 上是全新安装，公共包的 dist 目录不存在，需要先编译
+        run: pnpm --filter './public/*' build
+
       - name: Build admin
         run: pnpm build:admin
 
