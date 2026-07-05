@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 env:
-  NODE_VERSION: '20'
+  NODE_VERSION: '22'
   PNPM_VERSION: '10.4.1'
 
 jobs:
@@ -25,7 +25,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'pnpm'
+          # 当前仓库没有 pnpm-lock.yaml，关闭 setup-node 的缓存
+          # 依赖安装由下面的 pnpm install 步骤处理
+          cache: ''
 
       - name: Install dependencies
         # 如果仓库中没有 pnpm-lock.yaml，先尝试 frozen-lockfile，失败则普通 install
