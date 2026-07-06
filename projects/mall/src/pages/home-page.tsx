@@ -143,7 +143,7 @@ function ShowcaseTile({ product, price, onPress }: ShowcaseTileProps) {
           <img
             alt={product.name}
             src={resolveFileUrl(product.mainImageId)}
-            className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-[1.03]"
+            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
             loading="lazy"
           />
         ) : (
