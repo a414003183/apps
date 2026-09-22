@@ -104,7 +104,7 @@ export function StorefrontShell() {
   }
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="flex min-h-screen flex-col bg-background text-foreground">
       <header className="sticky top-0 z-40 border-b border-border/70 bg-white/90 backdrop-blur-md">
         <div className="mx-auto flex h-[40px] max-w-[1220px] items-center gap-2 px-3">
           <Button
@@ -283,7 +283,8 @@ export function StorefrontShell() {
         ) : null}
       </header>
 
-      <main className="mx-auto min-h-[500px] max-w-[1220px] px-3 py-1">
+      {/* 内容区是纵向 flex：各页面根节点用 flex-1 撑满高度。w-full 必须保留：mx-auto 的自动外边距会让 flex 子项不再沿交叉轴拉伸 */}
+      <main className="mx-auto flex w-full min-h-[500px] max-w-[1220px] flex-1 flex-col px-3 py-1">
         <Outlet />
       </main>
 
