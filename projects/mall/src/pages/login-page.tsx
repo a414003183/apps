@@ -37,7 +37,7 @@ export function LoginPage() {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-[500px] py-10">
+    <div className="flex flex-1 items-center justify-center py-10">
       <div className="w-full max-w-[400px]">
         <Card>
           <Card.Content className="p-8">

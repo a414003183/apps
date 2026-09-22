@@ -6,6 +6,7 @@ export function NotFoundPage() {
 
   return (
     <StatePanel
+      className="flex flex-1 items-center justify-center"
       eyebrow="404"
       title="页面不存在"
       description="当前路由没有对应页面，可能是链接已变更。"

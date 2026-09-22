@@ -106,7 +106,7 @@ export function RegisterPage() {
     identityType === 'CUSTOMER' ? '公司全称（选填）' : identityType === 'MERCHANT' ? '店铺名称' : '供应商名称'
 
   return (
-    <div className="flex items-center justify-center min-h-[500px] py-10">
+    <div className="flex flex-1 items-center justify-center py-10">
       <div className="w-full max-w-[520px]">
         <Card>
           <Card.Content className="p-8">

@@ -89,7 +89,7 @@ export function ProductPage() {
 
   if (loading) {
     return (
-      <div className="flex justify-center py-20">
+      <div className="flex flex-1 items-center justify-center py-20">
         <Spinner size="lg" color="accent" />
       </div>
     )
@@ -98,6 +98,7 @@ export function ProductPage() {
   if (!product) {
     return (
       <StatePanel
+        className="flex flex-1 items-center justify-center"
         eyebrow="商品不存在"
         title="未找到对应商品"
         description="该商品可能已下架"

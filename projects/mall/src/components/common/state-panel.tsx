@@ -11,12 +11,20 @@ interface StatePanelProps {
   description: string
   primaryAction?: StatePanelAction
   secondaryAction?: StatePanelAction
+  className?: string
 }
 
-export function StatePanel({ eyebrow, title, description, primaryAction, secondaryAction }: StatePanelProps) {
+export function StatePanel({
+  eyebrow,
+  title,
+  description,
+  primaryAction,
+  secondaryAction,
+  className,
+}: StatePanelProps) {
   return (
-    <Card className="p-8 sm:p-12 text-center">
-      <Card.Content className="flex flex-col items-center">
+    <Card className={`p-8 sm:p-12 text-center ${className ?? ''}`}>
+      <Card.Content className="flex flex-1 flex-col items-center justify-center">
         {eyebrow && <span className="text-xs font-bold text-accent uppercase tracking-wider">{eyebrow}</span>}
         <h2 className="text-xl font-bold mt-3 text-foreground">{title}</h2>
         <p className="text-sm text-muted mt-2 max-w-md">{description}</p>

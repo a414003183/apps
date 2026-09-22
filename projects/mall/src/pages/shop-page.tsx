@@ -51,13 +51,14 @@ export function ShopPage() {
 
   if (loading)
     return (
-      <div className="flex justify-center py-20">
+      <div className="flex flex-1 items-center justify-center py-20">
         <Spinner size="lg" color="accent" />
       </div>
     )
   if (!shop)
     return (
       <StatePanel
+        className="flex flex-1 items-center justify-center"
         eyebrow="店铺不存在"
         title="未找到店铺"
         description="该商家店铺不存在"
@@ -66,7 +67,7 @@ export function ShopPage() {
     )
 
   return (
-    <div className="space-y-3">
+    <div className="flex flex-1 flex-col gap-3">
       <Button variant="ghost" size="sm" onPress={() => navigate(-1)}>
         <ArrowLeft size={16} /> 返回
       </Button>
@@ -117,7 +118,7 @@ export function ShopPage() {
         </Card.Content>
       </Card>
 
-      <Card>
+      <Card className="flex-1">
         <Card.Header>
           <Card.Title>全部商品 ({total})</Card.Title>
         </Card.Header>

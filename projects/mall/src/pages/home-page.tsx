@@ -2,7 +2,7 @@ import { ChevronRight, Heart, Store } from 'lucide-react'
 import { Accordion, Button, Card, Chip, Spinner, Tabs } from '@heroui/react'
 import { useEffect, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { fetchProducts } from '../api/mall'
+import { fetchAllProducts } from '../api/mall'
 import { resolveFileUrl } from '../api/http'
 import { ProductCard } from '../components/commerce/product-card'
 import { formatCurrency } from '../lib/format'
@@ -168,6 +168,38 @@ function ShowcaseTile({ product, price, onPress }: ShowcaseTileProps) {
   )
 }
 
+interface ShowcaseGridProps<T extends Product> {
+  products: T[]
+  columnsClassName: string
+  emptyText: string
+  getPrice: (product: T) => number
+  onSelect: (product: T) => void
+}
+
+function ShowcaseGrid<T extends Product>({
+  products,
+  columnsClassName,
+  emptyText,
+  getPrice,
+  onSelect,
+}: ShowcaseGridProps<T>) {
+  if (products.length === 0) {
+    return (
+      <Card variant="tertiary">
+        <Card.Content className="py-8 text-center text-xs text-muted">{emptyText}</Card.Content>
+      </Card>
+    )
+  }
+
+  return (
+    <div className={`grid gap-px ${columnsClassName}`}>
+      {products.map((product) => (
+        <ShowcaseTile key={product.id} product={product} price={getPrice(product)} onPress={() => onSelect(product)} />
+      ))}
+    </div>
+  )
+}
+
 export function HomePage() {
   const navigate = useNavigate()
   const [products, setProducts] = useState<Product[]>([])
@@ -178,10 +210,10 @@ export function HomePage() {
   useEffect(() => {
     let mounted = true
 
-    fetchProducts()
+    fetchAllProducts()
       .then((data) => {
         if (mounted) {
-          setProducts(Array.isArray(data) ? data : data.list)
+          setProducts(data)
         }
       })
       .catch(() => {
@@ -266,14 +298,14 @@ export function HomePage() {
 
   if (loading) {
     return (
-      <div className="flex justify-center py-20">
+      <div className="flex flex-1 items-center justify-center py-20">
         <Spinner size="lg" color="accent" />
       </div>
     )
   }
 
   return (
-    <div className="space-y-1">
+    <div className="flex flex-1 flex-col gap-1">
       <div className="grid gap-1 lg:grid-cols-[160px_minmax(0,1fr)]">
         <Card variant="default" className="relative z-20 overflow-visible shadow-[var(--shadow-surface)]">
           <Card.Header className="py-1">
@@ -441,16 +473,13 @@ export function HomePage() {
             </Card.Header>
 
             <Card.Content className="px-0.5 pb-0.5 pt-0">
-              <div className="grid grid-cols-2 gap-px md:grid-cols-4">
-                {hotShowcaseProducts.map((product) => (
-                  <ShowcaseTile
-                    key={product.id}
-                    product={product}
-                    price={product.memberPrice || product.price}
-                    onPress={() => navigate(`/product/${product.id}`)}
-                  />
-                ))}
-              </div>
+              <ShowcaseGrid
+                products={hotShowcaseProducts}
+                columnsClassName="grid-cols-2 md:grid-cols-4"
+                emptyText="暂无商品"
+                getPrice={(product) => product.memberPrice || product.price}
+                onSelect={(product) => navigate(`/product/${product.id}`)}
+              />
             </Card.Content>
           </Card>
 
@@ -461,16 +490,13 @@ export function HomePage() {
               </Card.Header>
 
               <Card.Content className="px-0.5 pb-0.5 pt-0">
-                <div className="grid grid-cols-2 gap-px">
-                  {memberShowcaseProducts.map((product) => (
-                    <ShowcaseTile
-                      key={product.id}
-                      product={product}
-                      price={product.topMemberPrice}
-                      onPress={() => navigate(`/product/${product.id}`)}
-                    />
-                  ))}
-                </div>
+                <ShowcaseGrid
+                  products={memberShowcaseProducts}
+                  columnsClassName="grid-cols-2"
+                  emptyText="暂无会员特惠商品"
+                  getPrice={(product) => product.topMemberPrice}
+                  onSelect={(product) => navigate(`/product/${product.id}`)}
+                />
               </Card.Content>
             </Card>
 
@@ -480,16 +506,13 @@ export function HomePage() {
               </Card.Header>
 
               <Card.Content className="px-0.5 pb-0.5 pt-0">
-                <div className="grid grid-cols-2 gap-px">
-                  {newShowcaseProducts.map((product) => (
-                    <ShowcaseTile
-                      key={product.id}
-                      product={product}
-                      price={product.memberPrice || product.price}
-                      onPress={() => navigate(`/product/${product.id}`)}
-                    />
-                  ))}
-                </div>
+                <ShowcaseGrid
+                  products={newShowcaseProducts}
+                  columnsClassName="grid-cols-2"
+                  emptyText="暂无新品"
+                  getPrice={(product) => product.memberPrice || product.price}
+                  onSelect={(product) => navigate(`/product/${product.id}`)}
+                />
               </Card.Content>
             </Card>
 
@@ -499,23 +522,20 @@ export function HomePage() {
               </Card.Header>
 
               <Card.Content className="px-0.5 pb-0.5 pt-0">
-                <div className="grid grid-cols-2 gap-px">
-                  {memberRankShowcaseProducts.map((product) => (
-                    <ShowcaseTile
-                      key={product.id}
-                      product={product}
-                      price={product.topMemberPrice}
-                      onPress={() => navigate(`/product/${product.id}`)}
-                    />
-                  ))}
-                </div>
+                <ShowcaseGrid
+                  products={memberRankShowcaseProducts}
+                  columnsClassName="grid-cols-2"
+                  emptyText="暂无会员特惠商品"
+                  getPrice={(product) => product.topMemberPrice}
+                  onSelect={(product) => navigate(`/product/${product.id}`)}
+                />
               </Card.Content>
             </Card>
           </div>
         </div>
       </div>
 
-      <Card variant="default" className="shadow-[var(--shadow-surface)]">
+      <Card variant="default" className="flex flex-1 flex-col shadow-[var(--shadow-surface)]">
         <Card.Header className="pb-1">
           <Card.Title className="text-sm font-extrabold tracking-tight">首页商品流</Card.Title>
         </Card.Header>

@@ -1,4 +1,4 @@
-import { ChevronDown, Menu, Search, ShoppingCart, Store, User, X } from 'lucide-react'
+import { ChevronDown, Menu, Search, ShoppingCart, User, X } from 'lucide-react'
 import { Button, Chip, Dropdown, InputGroup } from '@heroui/react'
 import { useEffect, useState } from 'react'
 import type { FormEvent } from 'react'
@@ -104,7 +104,7 @@ export function StorefrontShell() {
   }
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="flex min-h-screen flex-col bg-background text-foreground">
       <header className="sticky top-0 z-40 border-b border-border/70 bg-white/90 backdrop-blur-md">
         <div className="mx-auto flex h-[40px] max-w-[1220px] items-center gap-2 px-3">
           <Button
@@ -112,23 +112,10 @@ export function StorefrontShell() {
             className="h-auto shrink-0 rounded-[calc(var(--radius)*3)] px-0"
             onPress={() => navigate('/')}
           >
-            <div className="flex items-center gap-1.5">
-              <div
-                className="flex h-7 w-7 items-center justify-center rounded-[calc(var(--radius)*2)] text-accent-foreground"
-                style={{
-                  background:
-                    'linear-gradient(135deg, var(--accent), color-mix(in oklab, var(--accent) 70%, var(--foreground) 30%))',
-                }}
-              >
-                <Store size={14} />
-              </div>
-              <span className="hidden text-[14px] font-extrabold tracking-tight text-foreground sm:block">
-                小牙商城
-              </span>
-            </div>
+            <span className="text-[14px] font-extrabold tracking-tight text-foreground">小牙商城</span>
           </Button>
 
-          <nav className="hidden items-center gap-0.5 md:flex">
+          <nav className="hidden items-center gap-0.5 lg:flex">
             <Button
               variant="primary"
               size="sm"
@@ -150,7 +137,7 @@ export function StorefrontShell() {
             ))}
           </nav>
 
-          <form onSubmit={handleSearchSubmit} className="flex-1">
+          <form onSubmit={handleSearchSubmit} className="min-w-0 flex-1">
             <InputGroup
               fullWidth
               variant="secondary"
@@ -163,6 +150,7 @@ export function StorefrontShell() {
                 value={searchKeyword}
                 onChange={(event) => setSearchKeyword(event.target.value)}
                 placeholder="搜索商品"
+                className="min-w-0"
               />
               <InputGroup.Suffix>
                 <Button type="submit" variant="primary" size="sm">
@@ -203,7 +191,7 @@ export function StorefrontShell() {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="h-7 rounded-full px-2 text-xs"
+                  className="hidden h-7 rounded-full px-2 text-xs sm:inline-flex"
                   onPress={() => navigateToWorkspace(session.profile?.route ?? '/')}
                 >
                   工作台
@@ -211,7 +199,7 @@ export function StorefrontShell() {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="h-7 rounded-full px-2 text-xs"
+                  className="hidden h-7 rounded-full px-2 text-xs sm:inline-flex"
                   onPress={() => void handleSignOut()}
                 >
                   退出
@@ -222,7 +210,7 @@ export function StorefrontShell() {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="h-7 rounded-full px-2 text-xs font-semibold text-accent"
+                  className="hidden h-7 rounded-full px-2 text-xs font-semibold text-accent sm:inline-flex"
                   onPress={() => navigate('/login')}
                 >
                   登录
@@ -230,7 +218,7 @@ export function StorefrontShell() {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="h-7 rounded-full px-2 text-xs"
+                  className="hidden h-7 rounded-full px-2 text-xs sm:inline-flex"
                   onPress={() => navigate('/login')}
                 >
                   注册
@@ -253,13 +241,13 @@ export function StorefrontShell() {
             </Button>
           </div>
 
-          <Button isIconOnly variant="ghost" className="md:hidden" onPress={() => setMobileOpen((open) => !open)}>
+          <Button isIconOnly variant="ghost" className="lg:hidden" onPress={() => setMobileOpen((open) => !open)}>
             {mobileOpen ? <X size={20} /> : <Menu size={20} />}
           </Button>
         </div>
 
         {mobileOpen ? (
-          <div className="border-t border-border bg-white/95 p-2 md:hidden">
+          <div className="border-t border-border bg-white/95 p-2 lg:hidden">
             {[
               ['首页', '/'],
               ['全部商品', '/search'],
@@ -279,11 +267,30 @@ export function StorefrontShell() {
                 {label}
               </Button>
             ))}
+
+            {/* 登录/注册/退出按钮在窄屏的顶栏里放不下，菜单里补一份入口 */}
+            <Button
+              variant="ghost"
+              className="mb-1 flex w-full justify-start rounded-2xl px-4"
+              onPress={() => {
+                setMobileOpen(false)
+
+                if (session.profile) {
+                  void handleSignOut()
+                  return
+                }
+
+                navigate('/login')
+              }}
+            >
+              {session.profile ? '退出登录' : '登录 / 注册'}
+            </Button>
           </div>
         ) : null}
       </header>
 
-      <main className="mx-auto min-h-[500px] max-w-[1220px] px-3 py-1">
+      {/* 内容区是纵向 flex：各页面根节点用 flex-1 撑满高度。w-full 必须保留：mx-auto 的自动外边距会让 flex 子项不再沿交叉轴拉伸 */}
+      <main className="mx-auto flex w-full min-h-[500px] max-w-[1220px] flex-1 flex-col px-3 py-1">
         <Outlet />
       </main>
 
