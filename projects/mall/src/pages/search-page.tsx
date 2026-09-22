@@ -175,7 +175,7 @@ export function SearchPage() {
   ]
 
   return (
-    <div className="space-y-3">
+    <div className="flex flex-1 flex-col gap-3">
       <Card variant="default" className="shadow-[var(--shadow-surface)]">
         <Card.Content className="space-y-4 p-4">
           <form onSubmit={handleSubmit}>
@@ -255,8 +255,8 @@ export function SearchPage() {
         </Card.Content>
       </Card>
 
-      <Card variant="default" className="shadow-[var(--shadow-surface)]">
-        <Card.Content className="p-3">
+      <Card variant="default" className="flex flex-1 flex-col shadow-[var(--shadow-surface)]">
+        <Card.Content className="flex flex-1 flex-col p-3">
           {loading ? (
             <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-5">
               {[...Array(10)].map((_, index) => (
@@ -268,7 +268,7 @@ export function SearchPage() {
               ))}
             </div>
           ) : filteredProducts.length === 0 ? (
-            <Card variant="tertiary">
+            <Card variant="tertiary" className="flex-1">
               <Card.Content className="py-16 text-center">
                 <p className="text-sm text-muted">没有找到相关商品</p>
                 <Button className="mt-4" onPress={clearFilters}>
@@ -284,7 +284,7 @@ export function SearchPage() {
                 ))}
               </div>
               {total > 0 && (
-                <div className="flex items-center justify-between pt-4">
+                <div className="mt-auto flex items-center justify-between pt-4">
                   <div className="flex items-center gap-2">
                     <Button
                       size="sm"

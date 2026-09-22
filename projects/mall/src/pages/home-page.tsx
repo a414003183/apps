@@ -266,14 +266,14 @@ export function HomePage() {
 
   if (loading) {
     return (
-      <div className="flex justify-center py-20">
+      <div className="flex flex-1 items-center justify-center py-20">
         <Spinner size="lg" color="accent" />
       </div>
     )
   }
 
   return (
-    <div className="space-y-1">
+    <div className="flex flex-1 flex-col gap-1">
       <div className="grid gap-1 lg:grid-cols-[160px_minmax(0,1fr)]">
         <Card variant="default" className="relative z-20 overflow-visible shadow-[var(--shadow-surface)]">
           <Card.Header className="py-1">
@@ -515,7 +515,7 @@ export function HomePage() {
         </div>
       </div>
 
-      <Card variant="default" className="shadow-[var(--shadow-surface)]">
+      <Card variant="default" className="flex flex-1 flex-col shadow-[var(--shadow-surface)]">
         <Card.Header className="pb-1">
           <Card.Title className="text-sm font-extrabold tracking-tight">首页商品流</Card.Title>
         </Card.Header>
