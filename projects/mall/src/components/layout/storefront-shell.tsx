@@ -128,7 +128,7 @@ export function StorefrontShell() {
             </div>
           </Button>
 
-          <nav className="hidden items-center gap-0.5 md:flex">
+          <nav className="hidden items-center gap-0.5 lg:flex">
             <Button
               variant="primary"
               size="sm"
@@ -150,7 +150,7 @@ export function StorefrontShell() {
             ))}
           </nav>
 
-          <form onSubmit={handleSearchSubmit} className="flex-1">
+          <form onSubmit={handleSearchSubmit} className="min-w-0 flex-1">
             <InputGroup
               fullWidth
               variant="secondary"
@@ -163,6 +163,7 @@ export function StorefrontShell() {
                 value={searchKeyword}
                 onChange={(event) => setSearchKeyword(event.target.value)}
                 placeholder="搜索商品"
+                className="min-w-0"
               />
               <InputGroup.Suffix>
                 <Button type="submit" variant="primary" size="sm">
@@ -203,7 +204,7 @@ export function StorefrontShell() {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="h-7 rounded-full px-2 text-xs"
+                  className="hidden h-7 rounded-full px-2 text-xs sm:inline-flex"
                   onPress={() => navigateToWorkspace(session.profile?.route ?? '/')}
                 >
                   工作台
@@ -211,7 +212,7 @@ export function StorefrontShell() {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="h-7 rounded-full px-2 text-xs"
+                  className="hidden h-7 rounded-full px-2 text-xs sm:inline-flex"
                   onPress={() => void handleSignOut()}
                 >
                   退出
@@ -222,7 +223,7 @@ export function StorefrontShell() {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="h-7 rounded-full px-2 text-xs font-semibold text-accent"
+                  className="hidden h-7 rounded-full px-2 text-xs font-semibold text-accent sm:inline-flex"
                   onPress={() => navigate('/login')}
                 >
                   登录
@@ -230,7 +231,7 @@ export function StorefrontShell() {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="h-7 rounded-full px-2 text-xs"
+                  className="hidden h-7 rounded-full px-2 text-xs sm:inline-flex"
                   onPress={() => navigate('/login')}
                 >
                   注册
@@ -253,13 +254,13 @@ export function StorefrontShell() {
             </Button>
           </div>
 
-          <Button isIconOnly variant="ghost" className="md:hidden" onPress={() => setMobileOpen((open) => !open)}>
+          <Button isIconOnly variant="ghost" className="lg:hidden" onPress={() => setMobileOpen((open) => !open)}>
             {mobileOpen ? <X size={20} /> : <Menu size={20} />}
           </Button>
         </div>
 
         {mobileOpen ? (
-          <div className="border-t border-border bg-white/95 p-2 md:hidden">
+          <div className="border-t border-border bg-white/95 p-2 lg:hidden">
             {[
               ['首页', '/'],
               ['全部商品', '/search'],
@@ -279,6 +280,24 @@ export function StorefrontShell() {
                 {label}
               </Button>
             ))}
+
+            {/* 登录/注册/退出按钮在窄屏的顶栏里放不下，菜单里补一份入口 */}
+            <Button
+              variant="ghost"
+              className="mb-1 flex w-full justify-start rounded-2xl px-4"
+              onPress={() => {
+                setMobileOpen(false)
+
+                if (session.profile) {
+                  void handleSignOut()
+                  return
+                }
+
+                navigate('/login')
+              }}
+            >
+              {session.profile ? '退出登录' : '登录 / 注册'}
+            </Button>
           </div>
         ) : null}
       </header>
