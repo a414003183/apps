@@ -25,6 +25,34 @@ export async function fetchProducts(params?: {
   return response.data.data
 }
 
+const CATALOG_PAGE_SIZE = 100
+const MAX_CATALOG_PRODUCTS = 500
+
+// 首页要按全量商品算分类树和各榜单，而列表接口按页返回，这里翻完所有页
+export async function fetchAllProducts() {
+  const firstPage = await fetchProducts({ page: 1, pageSize: CATALOG_PAGE_SIZE })
+
+  if (Array.isArray(firstPage)) {
+    return firstPage
+  }
+
+  const products = [...firstPage.list]
+  const total = firstPage.total ?? products.length
+
+  for (let page = 2; products.length < total && products.length < MAX_CATALOG_PRODUCTS; page += 1) {
+    const nextPage = await fetchProducts({ page, pageSize: CATALOG_PAGE_SIZE })
+    const nextProducts = Array.isArray(nextPage) ? nextPage : nextPage.list
+
+    if (nextProducts.length === 0) {
+      break
+    }
+
+    products.push(...nextProducts)
+  }
+
+  return products
+}
+
 export async function fetchMallCart(params?: { page?: number; pageSize?: number }) {
   const response = await http.get<ApiResponse<PageResult<MallCartItem>>>('/mall/cart', { params })
   return response.data.data
