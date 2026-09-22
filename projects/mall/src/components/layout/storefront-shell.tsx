@@ -1,4 +1,4 @@
-import { ChevronDown, Menu, Search, ShoppingCart, Store, User, X } from 'lucide-react'
+import { ChevronDown, Menu, Search, ShoppingCart, User, X } from 'lucide-react'
 import { Button, Chip, Dropdown, InputGroup } from '@heroui/react'
 import { useEffect, useState } from 'react'
 import type { FormEvent } from 'react'
@@ -112,20 +112,7 @@ export function StorefrontShell() {
             className="h-auto shrink-0 rounded-[calc(var(--radius)*3)] px-0"
             onPress={() => navigate('/')}
           >
-            <div className="flex items-center gap-1.5">
-              <div
-                className="flex h-7 w-7 items-center justify-center rounded-[calc(var(--radius)*2)] text-accent-foreground"
-                style={{
-                  background:
-                    'linear-gradient(135deg, var(--accent), color-mix(in oklab, var(--accent) 70%, var(--foreground) 30%))',
-                }}
-              >
-                <Store size={14} />
-              </div>
-              <span className="hidden text-[14px] font-extrabold tracking-tight text-foreground sm:block">
-                小牙商城
-              </span>
-            </div>
+            <span className="text-[14px] font-extrabold tracking-tight text-foreground">小牙商城</span>
           </Button>
 
           <nav className="hidden items-center gap-0.5 lg:flex">
