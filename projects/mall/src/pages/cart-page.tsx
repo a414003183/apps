@@ -111,13 +111,14 @@ export function CartPage() {
 
   if (!session.ready || loading)
     return (
-      <div className="flex justify-center py-20">
+      <div className="flex flex-1 items-center justify-center py-20">
         <Spinner size="lg" color="accent" />
       </div>
     )
   if (!session.isAuthenticated)
     return (
       <StatePanel
+        className="flex flex-1 items-center justify-center"
         eyebrow="请登录"
         title="登录后查看购物车"
         description="需要客户登录"
@@ -127,6 +128,7 @@ export function CartPage() {
   if (!session.isCustomer)
     return (
       <StatePanel
+        className="flex flex-1 items-center justify-center"
         eyebrow="身份限制"
         title="需要客户身份"
         description="请切换到客户身份"
@@ -135,7 +137,7 @@ export function CartPage() {
     )
 
   return (
-    <div className="space-y-3">
+    <div className="flex flex-1 flex-col gap-3">
       <Card>
         <Card.Content className="px-4 py-3 flex items-center justify-between">
           <h1 className="text-lg font-bold">我的购物车</h1>
@@ -145,13 +147,14 @@ export function CartPage() {
 
       {items.length === 0 ? (
         <StatePanel
+          className="flex flex-1 items-center justify-center"
           eyebrow="购物车空"
           title="购物车还是空的"
           description="去看看有什么好物"
           primaryAction={{ label: '去逛逛', onPress: () => navigate('/search') }}
         />
       ) : (
-        <div className="grid xl:grid-cols-[1fr_320px] gap-3">
+        <div className="grid flex-1 xl:grid-cols-[1fr_320px] gap-3">
           <div className="flex flex-col gap-2" style={{ minHeight: 0 }}>
             {/* 表头 + 全选 */}
             <Card>

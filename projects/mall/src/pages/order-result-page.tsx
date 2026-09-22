@@ -57,6 +57,7 @@ export function OrderResultPage() {
   if (!result) {
     return (
       <StatePanel
+        className="flex flex-1 items-center justify-center"
         eyebrow="无结果"
         title="没有下单结果"
         description="请重新提交订单"
@@ -66,7 +67,7 @@ export function OrderResultPage() {
   }
 
   return (
-    <div className="max-w-[600px] mx-auto space-y-3">
+    <div className="mx-auto flex w-full max-w-[600px] flex-1 flex-col space-y-3">
       <Card>
         <Card.Content className="p-8 text-center">
           <div className="w-[64px] h-[64px] rounded-full bg-success/10 flex items-center justify-center mx-auto mb-4">
